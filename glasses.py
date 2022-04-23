@@ -49,7 +49,10 @@ def zoom(mag_size, toggleZoom):
         up = (mouse_height + up_distance)
         right = (mouse_width + right_distance)
         
-        myScreenshot  = pyautogui.screenshot()
+        myScreenshot = pyautogui.screenshot()
+        myScreenshot.save(r'./CodeGate2022\screencap.png')
+        ima = Image.open('./CodeGate2022\screencap.png')
+        #ima.show()
         im = myScreenshot.crop((left,down,right,up))
         #im.show()
         magnify(im, mag_size)
@@ -59,7 +62,7 @@ def zoom(mag_size, toggleZoom):
 
 
 def magnify(image, mag_size):
-    
+  print("mango")
   #image.show()
 
 
