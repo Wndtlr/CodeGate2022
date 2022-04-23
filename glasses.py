@@ -1,4 +1,5 @@
 import pyautogui
+import cv2
 from PIL import Image 
 def run_program(mag_size):
     toggleZoom = false  
@@ -53,8 +54,31 @@ def zoom(mag_size, toggleZoom):
 
 def magnify(image, mag_size):
     
-    
-    pass
+
+  # Reading the image
+  source = cv2.imread(image, 1)
+
+  #scaleX is scale factor in x direction
+  #scaleY is scale factor in y direction
+  scaleX = (mag_size / 100)
+  scaleY = (mag_size / 100)
+
+
+
+  # Scaling up the image 
+  scaleUp = cv2.resize(source, None, fx= scaleX*3, fy= scaleY*3, interpolation= cv2.INTER_LINEAR)
+
+
+
+
+
+cv2.imshow(scaleUp)
+
+
+cv2.waitKey(0)
+
+  
+
 
 
 
