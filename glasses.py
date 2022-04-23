@@ -1,5 +1,5 @@
 import pyautogui
-from PIL import Image 
+from PIL import Image
 import keyboard
 
 def run_program(mag_size):
@@ -17,7 +17,7 @@ def run_program(mag_size):
 
       if(keyboard.is_pressed("]")): #once the terminate keybind is pressed exit.
         print("terminate")
-        toggleTerminate = false
+        toggleTerminate = False
 
 
 def zoom(mag_size, toggleZoom):
@@ -33,7 +33,7 @@ def zoom(mag_size, toggleZoom):
         right_distance = left_distance * 3
         up_distance = box_height // 2
         down_distance = up_distance
-        
+
         mouse_width, mouse_height = position
         if (mouse_width - left_distance < 0):
             left_distance = mouse_width
@@ -48,23 +48,22 @@ def zoom(mag_size, toggleZoom):
         down = (mouse_height - down_distance)
         up = (mouse_height + up_distance)
         right = (mouse_width + right_distance)
-        
-        myScreenshot = pyautogui.screenshot()
-        myScreenshot.save(r'./CodeGate2022\screencap.png')
-        ima = Image.open('./CodeGate2022\screencap.png')
-        #ima.show()
-        im = myScreenshot.crop((left,down,right,up))
-        #im.show()
-        magnify(im, mag_size)
-        
+
+        newScreenshot = pyautogui.screenshot()
+        newScreenshot.save(r'screenshot1.png')
+        im = Image.open(r'screenshot1.png')
+
+        im.show()
+
+        img = Image.new("RGB", (int(box_width), int(box_height)))
+        img.save('screenshot.png')
+        img.show()
+        break
+
+        print("pass") 
+  
         if(keyboard.is_pressed("[")):
             toggleZoom = not toggleZoom
-
-
-def magnify(image, mag_size):
-  print("mango")
-  #image.show()
-
 
 def get_YN_input(prompt):
   '''
