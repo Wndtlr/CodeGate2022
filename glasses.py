@@ -44,7 +44,9 @@ def zoom(mag_size, toggleZoom):
         up = (mouse_height + up_distance)
         right = (mouse_width + right_distance)
         
-        im = Image.crop(left, up, right, down)
+        myScreenshot = pyautogui.screenshot()
+        im = Image.myScreenshot
+        im = im.crop(left, up, right, down)
         
         magnify(im, mag_size)
         
