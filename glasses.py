@@ -1,19 +1,23 @@
 import pyautogui
-
 from PIL import Image 
+import keyboard
+
 def run_program(mag_size):
     toggleZoom = False  
-    toggleTerminate = toggleZoomrue
+    toggleTerminate = True
+    print("runprog")
     #While toggle is on,
     while (toggleTerminate): 
-        if(keyboard.is_pressed("ctrl+shift+m")): #toggle between zooming and not
-            toggleZoom = not toggleZoom
+      if(keyboard.is_pressed("[")): #toggle between zooming and not
+        print("pressed")
+        toggleZoom = not toggleZoom
 
-        if(toggleZoom): #check to see if it is zooming and then call the function to do so 
-            zoom(mag_size, toggleZoom)
+      if(toggleZoom): #check to see if it is zooming and then call the function to do so 
+        zoom(mag_size, toggleZoom)
 
-        if(keyboard.is_pressed("ctrl+shift+t")): #once the terminate keybind is pressed exit.
-            toggleTerminate = false
+      if(keyboard.is_pressed("]")): #once the terminate keybind is pressed exit.
+        print("terminate")
+        toggleTerminate = false
 
 
 def zoom(mag_size, toggleZoom):
@@ -22,7 +26,8 @@ def zoom(mag_size, toggleZoom):
     
     while(toggleZoom): #continue to do this
         position = pyautogui.position()
-        
+        initPos = position
+
         box_width, box_height = width_total * .2, height_total * .2 
         left_distance = box_width // 4
         right_distance = left_distance * 3
@@ -44,19 +49,18 @@ def zoom(mag_size, toggleZoom):
         up = (mouse_height + up_distance)
         right = (mouse_width + right_distance)
         
-        myScreenshot = pyautogui.screenshot()
-        im = Image.myScreenshot
-        im = im.crop(left, up, right, down)
-        
+        myScreenshot  = pyautogui.screenshot()
+        im = myScreenshot.crop((left,down,right,up))
+        #im.show()
         magnify(im, mag_size)
         
-        if(keyboard.is_pressed("ctrl+shift+m")):
+        if(keyboard.is_pressed("[")):
             toggleZoom = not toggleZoom
 
 
 def magnify(image, mag_size):
     
-  image.show()
+  #image.show()
 
 
 def get_YN_input(prompt):
